@@ -1,14 +1,14 @@
 [tool.poetry]
 
-name = "python_anvil"
-version = "3.0.1"
-description = "Anvil API"
+name = "belfry_python_anvil"
+version = "4.0.0"
+description = "Fork of Anvil API"
 license = "MIT"
-authors = ["Anvil Foundry Inc. <developers@useanvil.com>"]
+authors = ["Alex Tulenko <alex@belfrysoftware.com>"]
 readme = "README.md"
 homepage = "https://www.useanvil.com/"
-documentation = "https://github.com/anvilco/python-anvil"
-repository = "https://github.com/anvilco/python-anvil"
+documentation = "https://github.com/BelfrySoftware/python-anvil"
+repository = "https://github.com/BelfrySoftware/python-anvil"
 keywords = [
     "anvil",
     "api",
@@ -27,6 +27,7 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
