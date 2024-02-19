@@ -3,7 +3,7 @@
 import pytest
 from click.testing import CliRunner
 
-from python_anvil.cli import cli
+from belfry_python_anvil.cli import cli
 
 
 @pytest.fixture

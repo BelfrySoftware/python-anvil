@@ -12,7 +12,7 @@ from ratelimit.exception import RateLimitException
 from requests.auth import HTTPBasicAuth
 from typing import Optional
 
-from python_anvil.exceptions import AnvilRequestException
+from belfry_python_anvil.exceptions import AnvilRequestException
 
 from .constants import GRAPHQL_ENDPOINT, RATELIMIT_ENV, REQUESTS_LIMIT, RETRIES_LIMIT
 

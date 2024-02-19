@@ -1,5 +1,5 @@
-from python_anvil.api_resources.mutations.base import BaseQuery
-from python_anvil.api_resources.payload import GenerateEtchSigningURLPayload
+from belfry_python_anvil.api_resources.mutations.base import BaseQuery
+from belfry_python_anvil.api_resources.payload import GenerateEtchSigningURLPayload
 
 
 class GenerateEtchSigningURL(BaseQuery):

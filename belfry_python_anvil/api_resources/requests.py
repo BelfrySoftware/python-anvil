@@ -1,6 +1,6 @@
 from typing import Any, Dict
 
-from python_anvil.http import HTTPClient
+from belfry_python_anvil.http import HTTPClient
 
 
 class AnvilRequest:

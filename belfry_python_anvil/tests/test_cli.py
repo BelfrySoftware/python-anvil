@@ -5,7 +5,7 @@ import pytest
 from click.testing import CliRunner
 from unittest import mock
 
-from python_anvil.cli import cli
+from belfry_python_anvil.cli import cli
 
 
 @pytest.fixture
@@ -18,13 +18,13 @@ def set_key(monkeypatch):
 
 
 def describe_cli():
-    @mock.patch("python_anvil.api.Anvil.get_current_user")
+    @mock.patch("belfry_python_anvil.api.Anvil.get_current_user")
     def it_handles_no_key(anvil, runner):
         res = runner.invoke(cli, ["current-user"])
         assert anvil.call_count == 0
         assert isinstance(res.exception, ValueError)
 
-    @mock.patch("python_anvil.api.Anvil.get_current_user")
+    @mock.patch("belfry_python_anvil.api.Anvil.get_current_user")
     def it_handles_key(anvil, runner, monkeypatch):
         set_key(monkeypatch)
         res = runner.invoke(cli, ["current-user"])
@@ -32,7 +32,7 @@ def describe_cli():
         assert not isinstance(res.exception, ValueError)
 
     def describe_current_user():
-        @mock.patch("python_anvil.api.Anvil.query")
+        @mock.patch("belfry_python_anvil.api.Anvil.query")
         def it_queries(query, runner, monkeypatch):
             set_key(monkeypatch)
             query.return_value = {"currentUser": {"name": "Cameron"}}
@@ -42,7 +42,7 @@ def describe_cli():
             assert "User data:" in res.output
             assert query.call_count == 1
 
-        @mock.patch("python_anvil.api.Anvil.query")
+        @mock.patch("belfry_python_anvil.api.Anvil.query")
         def it_handles_headers(query, runner, monkeypatch):
             set_key(monkeypatch)
             query.return_value = {
@@ -57,7 +57,7 @@ def describe_cli():
             assert query.call_count == 1
 
     def describe_generate_pdf():
-        @mock.patch("python_anvil.api.Anvil.generate_pdf")
+        @mock.patch("belfry_python_anvil.api.Anvil.generate_pdf")
         def it_handles_files(generate_pdf, runner, monkeypatch):
             set_key(monkeypatch)
 
@@ -73,7 +73,7 @@ def describe_cli():
                 m().write.assert_called_once_with("Some bytes")
 
     def describe_gql_query():
-        @mock.patch("python_anvil.api.Anvil.query")
+        @mock.patch("belfry_python_anvil.api.Anvil.query")
         def it_works_query_only(query, runner, monkeypatch):
             set_key(monkeypatch)
 
@@ -91,7 +91,7 @@ def describe_cli():
             runner.invoke(cli, ['gql-query', '-q', query_str])
             query.assert_called_once_with(query_str, variables=None, debug=False)
 
-        @mock.patch("python_anvil.api.Anvil.query")
+        @mock.patch("belfry_python_anvil.api.Anvil.query")
         def it_works_query_and_variables(query, runner, monkeypatch):
             set_key(monkeypatch)
 

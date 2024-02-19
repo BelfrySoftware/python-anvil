@@ -1,6 +1,6 @@
 # pylint: disable=redefined-outer-name,unused-variable,expression-not-assigned,singleton-comparison
 
-from python_anvil.utils import build_batch_filenames, camel_to_snake, create_unique_id
+from belfry_python_anvil.utils import build_batch_filenames, camel_to_snake, create_unique_id
 
 
 def describe_build_batch_filenames():

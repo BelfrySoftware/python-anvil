@@ -19,9 +19,9 @@ payload for you.
 
 
 ```python
-from python_anvil.api import Anvil
-from python_anvil.api_resources.mutations.create_etch_packet import CreateEtchPacket
-from python_anvil.api_resources.payload import (
+from belfry_python_anvil.api import Anvil
+from belfry_python_anvil.api_resources.mutations.create_etch_packet import CreateEtchPacket
+from belfry_python_anvil.api_resources.payload import (
     EtchSigner,
     SignerField,
     DocumentUpload,

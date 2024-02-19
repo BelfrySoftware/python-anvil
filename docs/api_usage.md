@@ -12,7 +12,7 @@ at [Anvil API Basics](https://www.useanvil.com/docs/api/basics) for more details
 Example:
 
 ```python
-from python_anvil.api import Anvil
+from belfry_python_anvil.api import Anvil
 
 anvil = Anvil(api_key="MY_KEY", environment="prod")
 ```
@@ -44,7 +44,7 @@ instead of providing a specific version number.
 Example:
 
 ```python
-from python_anvil.api import Anvil
+from belfry_python_anvil.api import Anvil
 
 anvil = Anvil(api_key="MY KEY")
 data = {
@@ -75,7 +75,7 @@ HTML is another supported input type. This can be used by providing
 keys `"html"` and an optional `"css"`. Example below:
 
 ```python
-from python_anvil.api import Anvil
+from belfry_python_anvil.api import Anvil
 
 anvil = Anvil(api_key="MY KEY")
 data = {
@@ -199,7 +199,7 @@ All API functions also accept arbitrary kwargs which will affect how some underl
 Example:
 
 ```python
-from python_anvil.api import Anvil
+from belfry_python_anvil.api import Anvil
 
 anvil = Anvil(api_key=MY_API_KEY)
 
@@ -220,7 +220,7 @@ library. As of version 1.1 of `python-anvil`, extra fields are supported on all 
 For example:
 
 ```python
-from python_anvil.api_resources.payload import EtchSigner, SignerField
+from belfry_python_anvil.api_resources.payload import EtchSigner, SignerField
 
 # Use `EtchSigner`
 signer = EtchSigner(

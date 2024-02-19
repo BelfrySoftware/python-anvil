@@ -4,8 +4,8 @@ import pytest
 from typing import Any, MutableMapping
 from unittest import mock
 
-from python_anvil.api import Anvil, CreateEtchPacket
-from python_anvil.api_resources.payload import (
+from belfry_python_anvil.api import Anvil, CreateEtchPacket
+from belfry_python_anvil.api_resources.payload import (
     CreateEtchPacketPayload,
     ForgeSubmitPayload,
 )
@@ -31,8 +31,8 @@ def describe_api():
         return Anvil(api_key=DEV_KEY)
 
     def describe_init():
-        @mock.patch('python_anvil.api.GQLClient')
-        @mock.patch('python_anvil.api.HTTPClient')
+        @mock.patch('belfry_python_anvil.api.GQLClient')
+        @mock.patch('belfry_python_anvil.api.HTTPClient')
         def test_init_key_default(mock_client, mock_gql):
             Anvil(api_key="what")
             mock_client.assert_called_once_with(api_key="what", environment="dev")
@@ -40,8 +40,8 @@ def describe_api():
                 api_key="what", environment="dev", endpoint_url=None
             )
 
-        @mock.patch('python_anvil.api.GQLClient')
-        @mock.patch('python_anvil.api.HTTPClient')
+        @mock.patch('belfry_python_anvil.api.GQLClient')
+        @mock.patch('belfry_python_anvil.api.HTTPClient')
         def test_init_with_endpoint(mock_client, mock_gql):
             Anvil(api_key="what", endpoint_url="http://somewhere.example")
             mock_client.assert_called_once_with(api_key="what", environment="dev")
@@ -51,8 +51,8 @@ def describe_api():
                 endpoint_url="http://somewhere.example",
             )
 
-        @mock.patch('python_anvil.api.GQLClient')
-        @mock.patch('python_anvil.api.HTTPClient')
+        @mock.patch('belfry_python_anvil.api.GQLClient')
+        @mock.patch('belfry_python_anvil.api.HTTPClient')
         def test_init_key_prod(mock_client, mock_gql):
             Anvil(api_key="what", environment="prod")
             mock_client.assert_called_once_with(api_key="what", environment="prod")
@@ -60,8 +60,8 @@ def describe_api():
                 api_key="what", environment="prod", endpoint_url=None
             )
 
-        @mock.patch('python_anvil.api.GQLClient')
-        @mock.patch('python_anvil.api.HTTPClient')
+        @mock.patch('belfry_python_anvil.api.GQLClient')
+        @mock.patch('belfry_python_anvil.api.HTTPClient')
         def test_init_no_key(mock_client, mock_gql):
             with pytest.raises(ValueError):
                 Anvil(environment="prod")
@@ -75,13 +75,13 @@ def describe_api():
             pass
 
     def describe_fill_pdf():
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_dict_payload(m_request_post, anvil):
             payload = {"data": {"this_data": "yes"}}
             anvil.fill_pdf("some_template", payload=payload)
             m_request_post.assert_called_once_with("fill/some_template.pdf", payload)
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_json_payload(m_request_post, anvil):
             payload = """{ "data": {"jsonData": "is here"} }"""
             anvil.fill_pdf("some_template", payload=payload)
@@ -90,7 +90,7 @@ def describe_api():
                 {'data': {'jsonData': 'is here'}},
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_payload_obj(m_request_post, anvil):
             payload = FillPDFPayload(data={"jsonData": "this was a payload instance"})
             anvil.fill_pdf("some_template", payload=payload)
@@ -99,13 +99,13 @@ def describe_api():
                 {'data': {'jsonData': 'this was a payload instance'}},
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_empty_payload(m_request_post, anvil):
             with pytest.raises(ValueError):
                 anvil.fill_pdf("some_template", payload={})
             assert m_request_post.call_count == 0
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_with_kwargs(m_request_post, anvil):
             payload = """{ "data": {"jsonData": "is here"} }"""
             anvil.fill_pdf("some_template", payload=payload, include_headers=True)
@@ -115,7 +115,7 @@ def describe_api():
                 include_headers=True,
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_with_version(m_request_post, anvil):
             payload = {"data": {"one": "One string"}}
             anvil.fill_pdf(
@@ -131,7 +131,7 @@ def describe_api():
                 params={"versionNumber": Anvil.VERSION_LATEST},
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_with_params(m_request_post, anvil):
             payload = {"data": {"one": "One string"}}
             params = {"arbitrary": "Param"}
@@ -146,7 +146,7 @@ def describe_api():
             )
 
     def describe_generate_pdf():
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_dict_payload(m_request_post, anvil):
             anvil.generate_pdf({"data": [{"d1": "data"}]})
             m_request_post.assert_called_once_with(
@@ -155,7 +155,7 @@ def describe_api():
                 data={'data': [{'d1': 'data'}], 'type': 'markdown'},
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_json_payload(m_request_post, anvil):
             payload = """{ "data": [{ "d1": "data" }] }"""
             anvil.generate_pdf(payload)
@@ -163,7 +163,7 @@ def describe_api():
                 "generate-pdf", data={"data": [{"d1": "data"}], "type": "markdown"}
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_payload_html_type(m_request_post, anvil):
             anvil.generate_pdf({"data": {"html": "<h1>Hello</h1>"}, "type": "html"})
             m_request_post.assert_called_once_with(
@@ -171,13 +171,13 @@ def describe_api():
                 data={"data": {"html": "<h1>Hello</h1>"}, "type": "html"},
             )
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_invalid_payload_html_payload(m_request_post, anvil):
             with pytest.raises(ValueError):
                 anvil.generate_pdf({"data": {"no_html_here": "Nope"}, "type": "html"})
             assert m_request_post.call_count == 0
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_payload_invalid_type(m_request_post, anvil):
             with pytest.raises(ValueError):
                 anvil.generate_pdf(
@@ -185,7 +185,7 @@ def describe_api():
                 )
             assert m_request_post.call_count == 0
 
-        @mock.patch('python_anvil.api.RestRequest.post')
+        @mock.patch('belfry_python_anvil.api.RestRequest.post')
         def test_invalid_data_for_markdown(m_request_post, anvil):
             with pytest.raises(ValueError):
                 anvil.generate_pdf(
@@ -218,7 +218,7 @@ def describe_api():
             assert m_request_post.call_count == 1
 
     def describe_download_documents():
-        @mock.patch('python_anvil.api.PlainRequest.get')
+        @mock.patch('belfry_python_anvil.api.PlainRequest.get')
         def test_get_docs(m_request_post, anvil):
             anvil.download_documents('someEid')
             assert m_request_post.call_count == 1
@@ -299,7 +299,7 @@ def describe_api():
             assert expected_data == variables
 
         @mock.patch(
-            'python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
+            'belfry_python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
         )
         @mock.patch('gql.Client.execute')
         def test_create_etch_packet_dict_with_signer(
@@ -313,7 +313,7 @@ def describe_api():
             assert payloads.EXPECTED_ETCH_TEST_PAYLOAD == variables
 
         @mock.patch(
-            'python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
+            'belfry_python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
         )
         @mock.patch('gql.Client.execute')
         def test_create_etch_packet_json(m_request_post, m_create_unique, anvil):
@@ -331,7 +331,7 @@ def describe_api():
             assert payload == variables
 
         @mock.patch(
-            'python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
+            'belfry_python_anvil.api_resources.mutations.create_etch_packet.create_unique_id'
         )
         @mock.patch('gql.Client.execute')
         def test_adding_unsupported_fields(m_request_post, m_create_unique, anvil):

@@ -1,8 +1,8 @@
 from typing import Any, Dict, Optional, Text, Union
 
-from python_anvil.api_resources.mutations.base import BaseQuery
-from python_anvil.api_resources.mutations.helpers import get_payload_attrs
-from python_anvil.api_resources.payload import ForgeSubmitPayload
+from belfry_python_anvil.api_resources.mutations.base import BaseQuery
+from belfry_python_anvil.api_resources.mutations.helpers import get_payload_attrs
+from belfry_python_anvil.api_resources.payload import ForgeSubmitPayload
 
 
 DEFAULT_RESPONSE_QUERY = """

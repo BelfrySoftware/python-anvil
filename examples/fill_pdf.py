@@ -4,7 +4,7 @@
 
 import os
 
-from python_anvil.api import Anvil
+from belfry_python_anvil.api import Anvil
 
 
 API_KEY = os.environ.get("ANVIL_API_KEY")

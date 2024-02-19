@@ -6,7 +6,7 @@ from tabulate import tabulate
 from time import sleep
 from typing import List
 
-from python_anvil import utils
+from belfry_python_anvil import utils
 
 from .api import Anvil
 from .api_resources.payload import FillPDFPayload

@@ -4,8 +4,8 @@
 
 import os
 
-from python_anvil.api import Anvil
-from python_anvil.api_resources.payload import GeneratePDFPayload
+from belfry_python_anvil.api import Anvil
+from belfry_python_anvil.api_resources.payload import GeneratePDFPayload
 
 
 API_KEY = os.environ.get("ANVIL_API_KEY")

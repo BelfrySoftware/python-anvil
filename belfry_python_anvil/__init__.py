@@ -1,6 +1,6 @@
 from pkg_resources import DistributionNotFound, get_distribution
 
-from python_anvil import api, cli
+from belfry_python_anvil import api, cli
 
 
 try:

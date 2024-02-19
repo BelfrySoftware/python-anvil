@@ -15,8 +15,8 @@ queries.
 ```python
 from gql.dsl import DSLQuery, dsl_gql
 
-from python_anvil.api import Anvil
-from python_anvil.http import get_gql_ds
+from belfry_python_anvil.api import Anvil
+from belfry_python_anvil.http import get_gql_ds
 
 # These steps are similar to `gql's` docs on dynamic queries with Anvil helper functions.
 # https://gql.readthedocs.io/en/latest/advanced/dsl_module.html

@@ -1,8 +1,8 @@
 import os
 from gql.dsl import DSLQuery, dsl_gql
 
-from python_anvil.api import Anvil
-from python_anvil.http import get_gql_ds
+from belfry_python_anvil.api import Anvil
+from belfry_python_anvil.http import get_gql_ds
 
 
 API_KEY = os.environ.get("ANVIL_API_KEY")

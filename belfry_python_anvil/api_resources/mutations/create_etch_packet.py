@@ -5,15 +5,15 @@ from logging import Logger
 from mimetypes import guess_type
 from typing import Any, Dict, List, Optional, Union
 
-from python_anvil.api_resources.mutations.base import BaseQuery
-from python_anvil.api_resources.payload import (
+from belfry_python_anvil.api_resources.mutations.base import BaseQuery
+from belfry_python_anvil.api_resources.payload import (
     AttachableEtchFile,
     CreateEtchFilePayload,
     CreateEtchPacketPayload,
     DocumentUpload,
     EtchSigner,
 )
-from python_anvil.utils import create_unique_id
+from belfry_python_anvil.utils import create_unique_id
 
 
 logger: Logger = logging.getLogger(__name__)

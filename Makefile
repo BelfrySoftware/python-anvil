@@ -1,7 +1,7 @@
 # Project settings
-PROJECT := python-anvil
-PACKAGE := python_anvil
-REPOSITORY := anvilco/python-anvil
+PROJECT := belfry-python-anvil
+PACKAGE := belfry_python_anvil
+REPOSITORY := belfrysoftware/python-anvil
 
 # Project paths
 PACKAGES := $(PACKAGE) tests

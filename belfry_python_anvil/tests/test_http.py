@@ -3,8 +3,8 @@ import pytest
 from typing import Dict
 from unittest import mock
 
-from python_anvil.exceptions import AnvilRequestException
-from python_anvil.http import HTTPClient
+from belfry_python_anvil.exceptions import AnvilRequestException
+from belfry_python_anvil.http import HTTPClient
 
 
 class HTTPResponse:
@@ -38,7 +38,7 @@ def describe_http_client():
             client = HTTPClient(api_key=key)
             assert client.get_auth() == key
 
-        @mock.patch('python_anvil.http.b64encode')
+        @mock.patch('belfry_python_anvil.http.b64encode')
         def test_encoded_key(mock_b64):
             key = "my_secret_ket!!!11!!"
             client = HTTPClient(api_key=key)
@@ -46,8 +46,8 @@ def describe_http_client():
             mock_b64.assert_called_once()
 
     def describe_request():
-        @mock.patch("python_anvil.http.HTTPBasicAuth")
-        @mock.patch("python_anvil.http.HTTPClient.do_request")
+        @mock.patch("belfry_python_anvil.http.HTTPBasicAuth")
+        @mock.patch("belfry_python_anvil.http.HTTPClient.do_request")
         def test_default_args(do_request, basic_auth):
             basic_auth.return_value = "my_auth"
             response = HTTPResponse()
@@ -69,7 +69,7 @@ def describe_http_client():
             )
 
     def describe_do_request():
-        @mock.patch("python_anvil.http.requests.Session")
+        @mock.patch("belfry_python_anvil.http.requests.Session")
         def test_default_args(session):
             mock_session = mock.MagicMock()
             session.return_value = mock_session
@@ -87,8 +87,8 @@ def describe_http_client():
                 files=None,
             )
 
-        @mock.patch("python_anvil.http.RateLimitException")
-        @mock.patch("python_anvil.http.requests.Session")
+        @mock.patch("belfry_python_anvil.http.RateLimitException")
+        @mock.patch("belfry_python_anvil.http.requests.Session")
         def test_default_args_with_retry(session, ratelimit_exc, mock_response):
             class MockException(Exception):
                 pass
@@ -116,8 +116,8 @@ def describe_http_client():
                 files=None,
             )
 
-        @mock.patch("python_anvil.http.RateLimitException")
-        @mock.patch("python_anvil.http.requests.Session")
+        @mock.patch("belfry_python_anvil.http.RateLimitException")
+        @mock.patch("belfry_python_anvil.http.requests.Session")
         def test_default_args_without_retry(session, ratelimit_exc, mock_response):
             class MockException(Exception):
                 pass
