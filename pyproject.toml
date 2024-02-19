@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "belfry_python_anvil"
-version = "4.0.0"
+version = "4.0.1"
 description = "Fork of Anvil API"
 license = "MIT"
 authors = ["Alex Tulenko <alex@belfrysoftware.com>"]
@@ -68,7 +68,7 @@ mypy = "1.0.1"
 
 # Testing
 pytest = "^7.2.1"
-pytest-cov = "^4.0.0"
+pytest-cov = "^4.0.1"
 pytest-describe = "^2.0"
 pytest-random = "^0.2"
 freezegun = "*"
